@@ -1,9 +1,9 @@
+//https://www.imagine.art/api/home
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using _7E_Server.Core;
-
 
 public class ImagineArtHelper
 {

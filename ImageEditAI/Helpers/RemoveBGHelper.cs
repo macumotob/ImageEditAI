@@ -1,3 +1,4 @@
+//https://www.remove.bg/api
 using _7E_Server.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,6 @@ namespace ImageEditAI.Helpers;
 
 public class RemoveBGHelper
 {
-    //https://www.remove.bg/api
     public const string API_KEY = "5MrRCBZgVS8V454dT22pCvxo";
 
     private const string RemoveBgUrl = "https://api.remove.bg/v1.0/removebg";

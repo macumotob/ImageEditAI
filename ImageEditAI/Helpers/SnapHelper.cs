@@ -1,3 +1,5 @@
+//https://snapedit.app/ru/api-document
+
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,7 +9,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using System.Threading.Tasks;
-
 
 
 namespace ImageEditAI.Helpers;
