@@ -1,4 +1,4 @@
-﻿using _7E_Server.Core;
+using _7E_Server.Core;
 using ImageEditAI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +6,7 @@ namespace ImageEditAI.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class SnapEditController : _7E_Controller
+    public class RemoveBGController : _7E_Controller
     {
         [HttpGet]
         public Result Test()
@@ -21,7 +21,12 @@ namespace ImageEditAI.Controllers
         [HttpPost]
         public async Task<Result> RemoveBackground( IFormFile inputImage)
         {
-            return await SnapHelper.RemoveBackground(inputImage);
+            if (inputImage == null || inputImage.Length == 0)
+            {
+                return Result.Error("No file uploaded.");
+            }
+
+            return await RemoveBGHelper.RemoveBackground(inputImage);
         }
     }
 }

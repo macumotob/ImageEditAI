@@ -14,5 +14,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\7E_Server.Core\7E_Server.Core.csproj" />
   </ItemGroup>
+<ItemGroup>
+  <None Update="data\demo.txt">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 
 </Project>
