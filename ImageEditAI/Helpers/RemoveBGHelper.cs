@@ -10,6 +10,7 @@ namespace ImageEditAI.Helpers;
 
 public class RemoveBGHelper
 {
+    //https://www.remove.bg/api
     public const string API_KEY = "5MrRCBZgVS8V454dT22pCvxo";
 
     private const string RemoveBgUrl = "https://api.remove.bg/v1.0/removebg";

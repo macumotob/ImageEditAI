@@ -8,16 +8,6 @@ namespace ImageEditAI.Controllers
     [Route("api/[controller]/[action]")]
     public class RemoveBGController : _7E_Controller
     {
-        [HttpGet]
-        public Result Test()
-        {
-            return Result.Success();
-        }
-        [HttpGet]
-        public async Task<Result> AutoSuggest()
-        {
-            return await SnapHelper.AutoSuggest();
-        }
         [HttpPost]
         public async Task<Result> RemoveBackground( IFormFile inputImage)
         {
