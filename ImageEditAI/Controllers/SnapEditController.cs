@@ -23,5 +23,10 @@ namespace ImageEditAI.Controllers
         {
             return await SnapHelper.RemoveBackground(inputImage);
         }
-    }
+     [HttpPost]
+        public async Task<Result> ImageToBase64( IFormFile inputImage)
+        {
+            var s = await FileHelpers.ConvertIFormFileToBase64(inputImage);
+            return Result.Success(s);
+        }}
 }
