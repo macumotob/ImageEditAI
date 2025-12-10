@@ -1,0 +1,43 @@
+[
+    {
+        "name": "snap",
+        "action": "remove background",
+        "url": "SnapEdit/RemoveBackground",
+        "parameters": [
+            {
+                "type": "binary file",
+                "description": "image file to upload for remove background"
+            }
+        ]
+    },
+    {
+        "name": "remove bg",
+        "action": "remove background",
+        "url": "RemoveBG/RemoveBackground",
+        "parameters": [
+            {
+                "type": "binary file",
+                "description": "image file to upload for remove background"
+            }
+        ]
+    },
+    {
+        "name": "stability",
+        "action": "search and replace object",
+        "url": "Stability/EditImage",
+        "parameters": [
+            {
+                "type": "text",
+                "description": "prompt about image"
+            },
+            {
+                "type": "text",
+                "description": "search prompt for search and replace"
+            },
+            {
+                "type": "binary file",
+                "description": "image file to upload for remove background"
+            }
+        ]
+    }
+]
