@@ -16,6 +16,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\7E_Server.Core\7E_Server.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="data\monk.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 <ItemGroup>
   <None Update="data\demo.txt">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
