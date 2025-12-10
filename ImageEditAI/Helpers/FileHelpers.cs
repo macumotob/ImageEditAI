@@ -10,7 +10,7 @@ using System.IO;
 namespace ImageEditAI.Helpers;
 
 
-public static class FileHelpers 
+public static class FileHelpers
 {
     public static Image Base64ToImage(string base64String)
     {
@@ -100,12 +100,48 @@ public static class FileHelpers
         }
     }
 
-public static void SaveImageToFile(Image image, string filePath)
-{
-    image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg); // або PNG, Bmp тощо
-}
+    public static void SaveImageToFile(Image image, string filePath)
+    {
+        image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg); // або PNG, Bmp тощо
+    }
 
-public static void Mai122n()
+
+    public static Image RemoveBackground(Image originalImage, Image maskImage)
+    {
+        // Перетворюємо Image на Bitmap для обробки
+        Bitmap originalBitmap = new Bitmap(originalImage);
+        Bitmap maskBitmap = new Bitmap(maskImage);
+
+        // Перевірка розмірів зображень
+        if (originalBitmap.Width != maskBitmap.Width || originalBitmap.Height != maskBitmap.Height)
+            throw new ArgumentException("Зображення повинні мати однакові розміри.");
+
+        Bitmap result = new Bitmap(originalBitmap.Width, originalBitmap.Height, PixelFormat.Format32bppArgb);
+
+        for (int x = 0; x < originalBitmap.Width; x++)
+        {
+            for (int y = 0; y < originalBitmap.Height; y++)
+            {
+                Color originalPixel = originalBitmap.GetPixel(x, y);
+                Color maskPixel = maskBitmap.GetPixel(x, y);
+
+                // Якщо піксель маски чорний (фон), робимо його прозорим
+                if (maskPixel.R < 128 && maskPixel.G < 128 && maskPixel.B < 128)
+                {
+                    result.SetPixel(x, y, Color.FromArgb(0, 0, 0, 0));
+                }
+                else
+                {
+                    // Якщо піксель маски білий (фігура), залишаємо його без змін
+                    result.SetPixel(x, y, originalPixel);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void Mai122n()
     {
         // Пример base64 строк
         string base64Image1 = "<BASE64_STRING_IMAGE_1>"; // Первая картинка с фигурой на фоне

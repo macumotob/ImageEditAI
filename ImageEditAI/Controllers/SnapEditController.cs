@@ -40,7 +40,10 @@ namespace ImageEditAI.Controllers
             var data = JsonConvert.DeserializeObject<snap>(json);
             var original = FileHelpers.Base64ToImage(s);
             var mask = FileHelpers.Base64ToImage(data.output);
-            var overlaid = FileHelpers.OverlayImages(original, mask);
+           var maskPath = AppDomain.CurrentDomain.BaseDirectory + "data/monk.jpg";
+            FileHelpers.SaveImageToFile(mask, maskPath);
+
+            var overlaid = FileHelpers.RemoveBackground(original, mask);
             var resultPath = AppDomain.CurrentDomain.BaseDirectory + "data/overlaid.png";
             FileHelpers.SaveImageToFile(overlaid, resultPath);
             return Result.Success(resultPath);
