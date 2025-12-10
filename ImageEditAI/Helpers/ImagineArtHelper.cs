@@ -36,7 +36,7 @@ public class ImagineArtHelper
             {
                 var content = await response.Content.ReadAsByteArrayAsync();
                 //var base64 = Convert.ToBase64String(content);
-                var fileName = Guid.NewGuid().ToString() + ".JPEG";
+                var fileName = "imagine_art_" + Guid.NewGuid().ToString() + ".JPEG";
                 var outputFilePath = AppDomain.CurrentDomain.BaseDirectory + Path.Combine("data", fileName);
                  File.WriteAllBytes(outputFilePath, content);
                 return Result.Success(outputFilePath);

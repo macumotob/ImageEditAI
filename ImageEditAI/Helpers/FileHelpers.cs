@@ -9,7 +9,8 @@ using System.IO;
 
 namespace ImageEditAI.Helpers;
 
-
+//clipdrop user id : 1yNJAYV4aaTJ9KWrb0UCsRozEms2
+// API KEY : 73c90efcf634c57442cd522199b2108ddc8c829cac32fd083b169df5906799eadab3d04bde50c5490f656963af771068
 public static class FileHelpers
 {
     public static Image Base64ToImage(string base64String)

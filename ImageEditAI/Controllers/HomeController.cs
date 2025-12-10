@@ -9,7 +9,7 @@ namespace ImageEditAI.Controllers
     [Route("api/[controller]/[action]")]
     public class HomeController : _7E_Controller
     {
-        [HttpPost]
+        [HttpGet]
         public Result GetInterfaces()
         {
             var path = AppDomain.CurrentDomain.BaseDirectory + "data/interface.json";

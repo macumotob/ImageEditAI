@@ -5,6 +5,7 @@
         "url": "SnapEdit/RemoveBackground",
         "parameters": [
             {
+                "name" : "inputImage",
                 "type": "binary file",
                 "description": "image file to upload for remove background"
             }
@@ -27,14 +28,17 @@
         "url": "Stability/EditImage",
         "parameters": [
             {
+                "name" : "prompt",
                 "type": "text",
                 "description": "prompt about image"
             },
             {
+                "name" :"search_prompt",
                 "type": "text",
                 "description": "search prompt for search and replace"
             },
             {
+                "name" : "image",
                 "type": "binary file",
                 "description": "image file to upload for remove background"
             }
