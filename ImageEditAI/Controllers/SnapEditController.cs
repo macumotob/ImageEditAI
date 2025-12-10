@@ -48,5 +48,24 @@ namespace ImageEditAI.Controllers
             FileHelpers.SaveImageToFile(overlaid, resultPath);
             return Result.Success(resultPath);
         }
+    [HttpPost]
+        public async Task<Result> RemoveBG(IFormFile file)
+        {
+            var s = await FileHelpers.ConvertIFormFileToBase64(file);
+            //var path = AppDomain.CurrentDomain.BaseDirectory + "data/monk.json";
+            //var json = System.IO.File.ReadAllText(path);
+            var result =  await SnapHelper.RemoveBackground(file);
+        
+            var data = JsonConvert.DeserializeObject<snap>(result.data as string );
+            var original = FileHelpers.Base64ToImage(s);
+            var mask = FileHelpers.Base64ToImage(data.output);
+           var maskPath = AppDomain.CurrentDomain.BaseDirectory + "data/monk.jpg";
+            FileHelpers.SaveImageToFile(mask, maskPath);
+
+            var overlaid = FileHelpers.RemoveBackground(original, mask);
+            var resultPath = AppDomain.CurrentDomain.BaseDirectory + "data/snap_overlaid.png";
+            FileHelpers.SaveImageToFile(overlaid, resultPath);
+            return Result.Success(resultPath);
+        }
     }
 }
