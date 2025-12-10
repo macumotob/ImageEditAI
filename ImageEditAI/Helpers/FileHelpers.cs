@@ -9,7 +9,8 @@ using System.IO;
 
 namespace ImageEditAI.Helpers;
 
-public static class NewBaseType
+
+public static class FileHelpers 
 {
     public static Image Base64ToImage(string base64String)
     {
@@ -19,10 +20,6 @@ public static class NewBaseType
             return Image.FromStream(ms);
         }
     }
-}
-
-public static class FileHelpers : NewBaseType
-{
     public static async Task<byte[]> GetFileBytes(IFormFile file)
     {
         using (var memoryStream = new MemoryStream())
@@ -103,7 +100,12 @@ public static class FileHelpers : NewBaseType
         }
     }
 
-    public static void Main()
+public static void SaveImageToFile(Image image, string filePath)
+{
+    image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg); // або PNG, Bmp тощо
+}
+
+public static void Mai122n()
     {
         // Пример base64 строк
         string base64Image1 = "<BASE64_STRING_IMAGE_1>"; // Первая картинка с фигурой на фоне

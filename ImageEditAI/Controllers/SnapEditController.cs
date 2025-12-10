@@ -1,6 +1,8 @@
 ﻿using _7E_Server.Core;
 using ImageEditAI.Helpers;
+using ImageEditAI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ImageEditAI.Controllers
 {
@@ -19,14 +21,29 @@ namespace ImageEditAI.Controllers
             return await SnapHelper.AutoSuggest();
         }
         [HttpPost]
-        public async Task<Result> RemoveBackground( IFormFile inputImage)
+        public async Task<Result> RemoveBackground(IFormFile inputImage)
         {
             return await SnapHelper.RemoveBackground(inputImage);
         }
-     [HttpPost]
-        public async Task<Result> ImageToBase64( IFormFile inputImage)
+        [HttpPost]
+        public async Task<Result> ImageToBase64(IFormFile inputImage)
         {
             var s = await FileHelpers.ConvertIFormFileToBase64(inputImage);
             return Result.Success(s);
-        }}
+        }
+        [HttpPost]
+        public async Task<Result> TestMask(IFormFile file)
+        {
+            var s = await FileHelpers.ConvertIFormFileToBase64(file);
+            var path = AppDomain.CurrentDomain.BaseDirectory + "data/monk.json";
+            var json = System.IO.File.ReadAllText(path);
+            var data = JsonConvert.DeserializeObject<snap>(json);
+            var original = FileHelpers.Base64ToImage(s);
+            var mask = FileHelpers.Base64ToImage(data.output);
+            var overlaid = FileHelpers.OverlayImages(original, mask);
+            var resultPath = AppDomain.CurrentDomain.BaseDirectory + "data/overlaid.png";
+            FileHelpers.SaveImageToFile(overlaid, resultPath);
+            return Result.Success(resultPath);
+        }
+    }
 }
